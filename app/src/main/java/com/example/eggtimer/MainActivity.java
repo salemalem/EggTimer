@@ -29,7 +29,13 @@ public class MainActivity extends AppCompatActivity {
         int minutes = (int) secondsLeft / 60;
         int seconds = secondsLeft - minutes*60;
 
-        timerTextView.setText(Integer.toString(minutes) + ":" + Integer.toString(seconds));
+        String secondString;
+        if (seconds < 10) {
+            secondString = "0" + Integer.toString(seconds);
+        } else {
+            secondString = Integer.toString(seconds);
+        }
+        timerTextView.setText(Integer.toString(minutes) + ":" + secondString);
         timerSeekBar.setProgress(minutes * 60 + seconds);
     }
 
@@ -77,8 +83,14 @@ public class MainActivity extends AppCompatActivity {
 
         int mySeconds = 5;
         timerSeekBar.setProgress(mySeconds);
+        String secondString;
+        if (mySeconds - mySeconds/60 < 10) {
+            secondString = "0" + Integer.toString(mySeconds - mySeconds/60);
+        } else {
+            secondString = Integer.toString(mySeconds - mySeconds/60);
+        }
 
-        timerTextView.setText(Integer.toString(mySeconds/60) + ":" + Integer.toString(mySeconds - mySeconds/60));
+        timerTextView.setText(Integer.toString(mySeconds/60) + ":" + secondString);
 
         timerSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
